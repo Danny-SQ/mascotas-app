@@ -49,16 +49,20 @@ export default function RemindersPage() {
 
   useEffect(() => {
     fetchData()
-  }, [show_completed])
+  }, [showCompleted])
 
   const fetchData = async () => {
+    setLoading(true) // Opcional: mostrar loading al cambiar de pestaña
     try {
       const petsRes = await petsAPI.getAll()
-      setPets(petsRes.data.pets)
+      const petsList = petsRes.data.pets
+      setPets(petsList)
 
       const allReminders = []
-      for (const pet of petsRes.data.pets) {
+      for (const pet of petsList) {
+        // Usamos showCompleted (el estado de React)
         const remindersRes = await remindersAPI.getByPet(pet.id, { completed: showCompleted })
+      
         const remindersWithPet = remindersRes.data.reminders.map((r) => ({
           ...r,
           pet_name: pet.name,
