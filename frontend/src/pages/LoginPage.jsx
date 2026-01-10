@@ -90,7 +90,7 @@ export default function LoginPage() {
       {/* Right Side - Image */}
       <div className="hidden lg:flex lg:flex-1 bg-primary-500 items-center justify-center p-12">
         <div className="max-w-lg text-center text-white">
-          <img src="/public/happy-dog-and-cat-illustration.jpg" alt="Mascotas felices" className="w-64 h-64 mx-auto mb-8 rounded-3xl" />
+          <img src="/happy-dog-and-cat-illustration.jpg" alt="Mascotas felices" className="w-64 h-64 mx-auto mb-8 rounded-3xl" />
           <h2 className="text-3xl font-bold mb-4">Cuida a tus mascotas con amor</h2>
           <p className="text-primary-100 text-lg">
             Registra todas las actividades, citas médicas y recordatorios importantes de tus compañeros peludos en un

@@ -29,8 +29,8 @@ def register():
     db.session.add(user)
     db.session.commit()
     
-    access_token = create_access_token(identity=user.id)
-    refresh_token = create_refresh_token(identity=user.id)
+    access_token = create_access_token(identity=str(user.id))
+    refresh_token = create_refresh_token(identity=str(user.id)) 
     
     return jsonify({
         'message': 'Usuario registrado exitosamente',
@@ -54,8 +54,8 @@ def login():
     if not user or not user.check_password(data['password']):
         return jsonify({'error': 'Credenciales inválidas'}), 401
     
-    access_token = create_access_token(identity=user.id)
-    refresh_token = create_refresh_token(identity=user.id)
+    access_token = create_access_token(identity=str(user.id))
+    refresh_token = create_refresh_token(identity=str(user.id))
     
     return jsonify({
         'message': 'Inicio de sesión exitoso',
@@ -68,7 +68,7 @@ def login():
 @jwt_required(refresh=True)
 def refresh():
     current_user_id = get_jwt_identity()
-    access_token = create_access_token(identity=current_user_id)
+    access_token = create_access_token(identity=str(current_user_id)) 
     return jsonify({'access_token': access_token}), 200
 
 @auth_bp.route('/me', methods=['GET'])

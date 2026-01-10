@@ -6,6 +6,7 @@ Flask-CORS==4.0.0
 Flask-Bcrypt==1.0.1
 psycopg2-binary==2.9.9
 python-dotenv==1.0.0
+python-dateutil==2.9.0
 marshmallow==3.20.1
 APScheduler==3.10.4
 gunicorn==21.2.0
