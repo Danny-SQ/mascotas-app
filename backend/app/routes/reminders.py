@@ -16,14 +16,16 @@ def get_pet_reminders(pet_id):
     if not pet:
         return jsonify({'error': 'Mascota no encontrada'}), 404
     
+    # Capturamos el parámetro de la URL
     show_completed = request.args.get('completed', 'false').lower() == 'true'
     
-    query = Reminder.query.filter_by(pet_id=pet_id)
+    # MODIFICACIÓN AQUÍ:
+    # Filtramos explícitamente por el estado que pide el frontend
+    reminders = Reminder.query.filter_by(
+        pet_id=pet_id, 
+        is_completed=show_completed # Ahora siempre filtrará (True o False)
+    ).order_by(Reminder.due_date.asc()).all()
     
-    if not show_completed:
-        query = query.filter_by(is_completed=False)
-    
-    reminders = query.order_by(Reminder.due_date.asc()).all()
     return jsonify({'reminders': [reminder.to_dict() for reminder in reminders]}), 200
 
 @reminders_bp.route('/upcoming', methods=['GET'])

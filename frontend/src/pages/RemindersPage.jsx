@@ -49,7 +49,7 @@ export default function RemindersPage() {
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [show_completed])
 
   const fetchData = async () => {
     try {
